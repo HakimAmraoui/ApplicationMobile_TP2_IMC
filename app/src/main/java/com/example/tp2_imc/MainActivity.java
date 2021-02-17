@@ -2,9 +2,12 @@ package com.example.tp2_imc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -22,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     CheckBox commentaire = null;
     RadioGroup group = null;
     TextView result = null;
+    private static final String TAG = "MyActivity";
+
 
     private final String texteInit = "Cliquez sur le bouton « Calculer l'IMC » pour obtenir un résultat.";
 
@@ -43,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
         envoyer.setOnClickListener(envoyerListener);
         reset.setOnClickListener(resetListener);
         commentaire.setOnClickListener(checkedListener);
-        taille.addTextChangedListener(textWatcher);
-        poids.addTextChangedListener(textWatcher);
+        taille.setOnKeyListener(modifListener);
+        poids.setOnKeyListener(modifListener);
 
 
     }
@@ -76,39 +81,12 @@ public class MainActivity extends AppCompatActivity {
                     String resultat = "Votre IMC est " + imc + " . ";
 
                     // On ajoute une interpretation de l'imc
-                    if(commentaire.isChecked()) resultat += interpreteIMC(imc);
+                    if (commentaire.isChecked()) resultat += interpreteIMC(imc);
 
                     result.setText(resultat);
                 }
             }
         }
-    };
-
-    private String interpreteIMC(float imc) {
-
-        if(imc < 16.5) {
-            return "Famine" ;
-        }
-        else if (16.5 <= imc && imc < 18.5) {
-            return "Maigreur" ;
-        }
-        else if (18.5 <= imc && imc < 25) {
-            return "Corpulence normale" ;
-        }
-        else if (255 <= imc && imc < 30) {
-            return "Surpoids" ;
-        }
-        else if (30 <= imc && imc < 35) {
-            return "Obésité modérée" ;
-        }
-        else if (35 <= imc && imc < 40) {
-            return "Obésité sévère" ;
-        }
-        else if (40 <= imc ) {
-            return "Obésité morbide ou massive" ;
-        }
-        return "";
-
     };
 
     // Listener du bouton reset
@@ -127,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            if(((CheckBox)v).isChecked()) {
+            if (((CheckBox) v).isChecked()) {
                 result.setText(texteInit);
             }
         }
@@ -142,12 +120,51 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
 
         @Override
-        public void afterTextChanged(Editable s) {}
+        public void afterTextChanged(Editable s) {
+        }
     };
 
 
+    // Ex 1
+    private String interpreteIMC(float imc) {
 
+        if (imc < 16.5) {
+            return "Famine";
+        } else if (16.5 <= imc && imc < 18.5) {
+            return "Maigreur";
+        } else if (18.5 <= imc && imc < 25) {
+            return "Corpulence normale";
+        } else if (25 <= imc && imc < 30) {
+            return "Surpoids";
+        } else if (30 <= imc && imc < 35) {
+            return "Obésité modérée";
+        } else if (35 <= imc && imc < 40) {
+            return "Obésité sévère";
+        } else if (40 <= imc) {
+            return "Obésité morbide ou massive";
+        }
+        return "";
+
+    }
+
+    // Ex 2
+    // Se lance à chaque fois qu'on appuie sur une touche en étant sur un EditText
+    private View.OnKeyListener modifListener = new View.OnKeyListener() {
+        @Override
+        public boolean onKey(View v, int keyCode, KeyEvent event) {
+            // On remet le texte à sa valeur par défaut
+            if (taille.getText().toString().contains(".")) {
+                group.check(R.id.radio_metre);
+            } else {
+                group.check(R.id.radio_centimetre);
+            }
+            return false;
+        }
+
+
+    };
 }
