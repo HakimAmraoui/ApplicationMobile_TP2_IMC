@@ -75,10 +75,40 @@ public class MainActivity extends AppCompatActivity {
                     float imc = pValue / (tValue * tValue);
                     String resultat = "Votre IMC est " + imc + " . ";
 
+                    // On ajoute une interpretation de l'imc
+                    if(commentaire.isChecked()) resultat += interpreteIMC(imc);
+
                     result.setText(resultat);
                 }
             }
         }
+    };
+
+    private String interpreteIMC(float imc) {
+
+        if(imc < 16.5) {
+            return "Famine" ;
+        }
+        else if (16.5 <= imc && imc < 18.5) {
+            return "Maigreur" ;
+        }
+        else if (18.5 <= imc && imc < 25) {
+            return "Corpulence normale" ;
+        }
+        else if (255 <= imc && imc < 30) {
+            return "Surpoids" ;
+        }
+        else if (30 <= imc && imc < 35) {
+            return "Obésité modérée" ;
+        }
+        else if (35 <= imc && imc < 40) {
+            return "Obésité sévère" ;
+        }
+        else if (40 <= imc ) {
+            return "Obésité morbide ou massive" ;
+        }
+        return "";
+
     };
 
     // Listener du bouton reset
