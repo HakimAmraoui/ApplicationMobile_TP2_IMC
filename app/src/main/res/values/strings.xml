@@ -1,3 +1,30 @@
 <resources>
-    <string name="app_name">Calcul d\'IMC</string>
+
+    <string name="app_nom">Calcul d\'IMC</string>
+    <string name="texteInit">"Cliquez sur le bouton « Calculer l'IMC » pour obtenir un résultat."</string>
+    <string name="entreePoids">Déterminez votre poids : </string>
+    <string name="poids">Poids :</string>
+    <string name="entreeTaille">Déterminez votre taille : </string>
+    <string name="taille">Taille :</string>
+    <string name="metre">Mètre</string>
+    <string name="centimetre">Centimètre</string>
+    <string name="appreciation">Appréciation</string>
+    <string name="calculer">Calculer l\'IMC</string>
+    <string name="resultat">Résultat:</string>
+    <string name="indication">Vous devez cliquer sur le bouton « Calculer l\'IMC » pour obtenir un résultat.</string>
+    <string name="tailleNeg">La taille doit être positive</string>
+    <string name="famine">Famine</string>
+
+
+
+    <string name="reset">Reset</string>
+    <string name="app_name">IMC</string>
+    <string name="poidsNeg">Le poids doit etre positif</string>
+    <string name="textResult">"Votre IMC est "</string>
+    <string name="corpulenceNormale">Corpulence normale</string>
+    <string name="surpoids">Surpoids</string>
+    <string name="obesiteModeree">Obésité modérée</string>
+    <string name="obesiteSevere">Obésité sévère</string>
+    <string name="obesiteMorbide">Obésité morbide ou massive</string>
+    <string name="maigre">Maigreur</string>
 </resources>

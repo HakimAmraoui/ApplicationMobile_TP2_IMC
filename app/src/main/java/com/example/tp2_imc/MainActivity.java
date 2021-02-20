@@ -2,11 +2,10 @@ package com.example.tp2_imc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.nfc.Tag;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MyActivity";
 
 
-    private final String texteInit = "Cliquez sur le bouton « Calculer l'IMC » pour obtenir un résultat.";
+
+    private final String texteInit = findViewById(R.id.result).toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,18 +67,18 @@ public class MainActivity extends AppCompatActivity {
 
             // Puis on vérifie que la taille est cohérente
             if (tValue <= 0)
-                Toast.makeText(MainActivity.this, "La taille doit être positive", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, /*R.string.tailleNeg*/ "", Toast.LENGTH_SHORT).show();
             else {
                 float pValue = Float.valueOf(p);
                 if (pValue <= 0)
-                    Toast.makeText(MainActivity.this, "Le poids doit etre positif", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, /*R.string.poidsNeg*/ "", Toast.LENGTH_SHORT).show();
                 else {
                     // Si l'utilisateur a indiqué que la taille était en centimètres
                     // On vérifie que la Checkbox sélectionnée est la deuxième à l'aide de son identifiant
                     if (group.getCheckedRadioButtonId() == R.id.radio_centimetre)
                         tValue = tValue / 100;
                     float imc = pValue / (tValue * tValue);
-                    String resultat = "Votre IMC est " + imc + " . ";
+                    String resultat = /*R.string.textResult +*/ imc + " . ";
 
                     // On ajoute une interpretation de l'imc
                     if (commentaire.isChecked()) resultat += interpreteIMC(imc);
@@ -130,23 +130,23 @@ public class MainActivity extends AppCompatActivity {
 
 
     // Ex 1
+    @SuppressLint("ResourceType")
     private String interpreteIMC(float imc) {
-
-        if (imc < 16.5) {
-            return "Famine";
+        /*if (imc < 16.5) {
+            return findViewById(R.string.famine).toString();
         } else if (16.5 <= imc && imc < 18.5) {
-            return "Maigreur";
+            return findViewById(R.string.maigre).toString();
         } else if (18.5 <= imc && imc < 25) {
-            return "Corpulence normale";
+            return findViewById(R.string.corpulenceNormale).toString();
         } else if (25 <= imc && imc < 30) {
-            return "Surpoids";
+            return findViewById(R.string.surpoids).toString();
         } else if (30 <= imc && imc < 35) {
-            return "Obésité modérée";
+            return findViewById(R.string.obesiteModeree).toString();
         } else if (35 <= imc && imc < 40) {
-            return "Obésité sévère";
+            return findViewById(R.string.obesiteSevere).toString();
         } else if (40 <= imc) {
-            return "Obésité morbide ou massive";
-        }
+            return findViewById(R.string.obesiteMorbide).toString();
+        }*/
         return "";
 
     }

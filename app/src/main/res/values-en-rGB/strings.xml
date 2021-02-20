@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BMI</string>
+    <string name="app_nom">Calculate your BMI</string>
+    <string name="texteInit">Clic on the button</string>
+    <string name="entreePoids">Enter your weight ;</string>
+    <string name="poids">Weight :</string>
+    <string name="entreeTaille">Enter your height :</string>
+    <string name="taille">Height :</string>
+    <string name="metre">Meter</string>
+    <string name="centimetre">Centimeter</string>
+    <string name="appreciation">Assessment</string>
+    <string name="calculer">Calculat BMI</string>
+    <string name="resultat">Result</string>
+    <string name="reset">Reset</string>
+    <string name="indication">Clic on the button</string>
+    <string name="tailleNeg">The height has to be positiv</string>
+    <string name="poidsNeg">The weight has to be positiv</string>
+    <string name="textResult">"Your BMI is "</string>
+    <string name="famine">Famine</string>
+    <string name="surpoids">Overweight</string>
+    <string name="corpulenceNormale">Normal weight</string>
+    <string name="obesiteModeree">Moderate obesity</string>
+    <string name="obesiteSevere">Severe obesity</string>
+    <string name="obesiteMorbide">morbid obesity</string>
+    <string name="maigre">Thinness</string>
+</resources>
