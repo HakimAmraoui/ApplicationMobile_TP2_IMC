@@ -27,8 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MyActivity";
 
 
-
-    private final String texteInit = findViewById(R.id.result).toString();
+//    private final String texteInit = getString(R.string.texteInit);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,18 +66,18 @@ public class MainActivity extends AppCompatActivity {
 
             // Puis on vérifie que la taille est cohérente
             if (tValue <= 0)
-                Toast.makeText(MainActivity.this, /*R.string.tailleNeg*/ "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, R.string.tailleNeg, Toast.LENGTH_SHORT).show();
             else {
                 float pValue = Float.valueOf(p);
                 if (pValue <= 0)
-                    Toast.makeText(MainActivity.this, /*R.string.poidsNeg*/ "", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, R.string.poidsNeg, Toast.LENGTH_SHORT).show();
                 else {
                     // Si l'utilisateur a indiqué que la taille était en centimètres
                     // On vérifie que la Checkbox sélectionnée est la deuxième à l'aide de son identifiant
                     if (group.getCheckedRadioButtonId() == R.id.radio_centimetre)
                         tValue = tValue / 100;
                     float imc = pValue / (tValue * tValue);
-                    String resultat = /*R.string.textResult +*/ imc + " . ";
+                    String resultat = getString(R.string.textResult) + imc + " . ";
 
                     // On ajoute une interpretation de l'imc
                     if (commentaire.isChecked()) resultat += interpreteIMC(imc);
@@ -96,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             poids.getText().clear();
             taille.getText().clear();
-            result.setText(texteInit);
+            result.setText(getString(R.string.texteInit));
         }
     };
 
@@ -106,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             if (((CheckBox) v).isChecked()) {
-                result.setText(texteInit);
+                result.setText(getString(R.string.texteInit));
             }
         }
     };
@@ -116,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            result.setText(texteInit);
+            result.setText(getString(R.string.texteInit));
         }
 
         @Override
@@ -130,23 +129,22 @@ public class MainActivity extends AppCompatActivity {
 
 
     // Ex 1
-    @SuppressLint("ResourceType")
     private String interpreteIMC(float imc) {
-        /*if (imc < 16.5) {
-            return findViewById(R.string.famine).toString();
+        if (imc < 16.5) {
+            return getResources().getString(R.string.famine);
         } else if (16.5 <= imc && imc < 18.5) {
-            return findViewById(R.string.maigre).toString();
+            return getResources().getString(R.string.maigre);
         } else if (18.5 <= imc && imc < 25) {
-            return findViewById(R.string.corpulenceNormale).toString();
+            return getResources().getString(R.string.corpulenceNormale);
         } else if (25 <= imc && imc < 30) {
-            return findViewById(R.string.surpoids).toString();
+            return getResources().getString(R.string.surpoids);
         } else if (30 <= imc && imc < 35) {
-            return findViewById(R.string.obesiteModeree).toString();
+            return getResources().getString(R.string.obesiteModeree);
         } else if (35 <= imc && imc < 40) {
-            return findViewById(R.string.obesiteSevere).toString();
+            return getResources().getString(R.string.obesiteSevere);
         } else if (40 <= imc) {
-            return findViewById(R.string.obesiteMorbide).toString();
-        }*/
+            return getResources().getString(R.string.obesiteMorbide);
+        }
         return "";
 
     }
